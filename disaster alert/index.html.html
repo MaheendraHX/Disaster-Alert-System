@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disaster Alert Command Center</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+font-family:'Inter',sans-serif;
+margin:0;
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+color:#1f2937;
+}
+
+header{
+background:linear-gradient(135deg,#2563eb,#1e40af);
+color:white;
+padding:40px 20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+header h1{
+margin:0;
+font-size:40px;
+letter-spacing:1px;
+}
+
+header p{
+opacity:0.9;
+margin-top:8px;
+}
+
+nav{
+background:#0f172a;
+padding:14px;
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+nav a{
+color:#e5e7eb;
+margin:0 18px;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#60a5fa;
+}
+
+.container{
+padding:40px 8%;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:28px;
+border-radius:16px;
+box-shadow:0 12px 25px rgba(0,0,0,0.15);
+transition:0.25s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 35px rgba(0,0,0,0.25);
+}
+
+.card h2{
+margin-top:0;
+}
+
+.stat{
+font-size:36px;
+font-weight:700;
+color:#2563eb;
+margin-bottom:5px;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #d1d5db;
+margin-top:6px;
+margin-bottom:16px;
+font-family:inherit;
+}
+
+button{
+background:linear-gradient(135deg,#2563eb,#1e40af);
+color:white;
+padding:14px;
+border:none;
+border-radius:10px;
+font-weight:600;
+font-size:15px;
+cursor:pointer;
+transition:0.25s;
+}
+
+button:hover{
+transform:scale(1.03);
+box-shadow:0 6px 16px rgba(0,0,0,0.3);
+}
+
+.alert{
+background:#fee2e2;
+border-left:6px solid #ef4444;
+padding:14px;
+border-radius:8px;
+margin-bottom:12px;
+}
+
+footer{
+background:#020617;
+color:#9ca3af;
+text-align:center;
+padding:25px;
+margin-top:50px;
+font-size:14px;
+}
+
+.badge{
+background:#dbeafe;
+color:#1e40af;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.section-title{
+color:white;
+margin-bottom:25px;
+font-size:28px;
+}
+
+</style>
+
+<script>
+function sendAlert(){
+
+const type=document.getElementById('type').value
+const region=document.getElementById('region').value
+const message=document.getElementById('message').value
+
+if(message.trim()===""){
+alert("Please enter an alert message")
+return
+}
+
+const log=document.getElementById('alertLog')
+
+const entry=document.createElement('div')
+entry.className='alert'
+entry.innerHTML="🚨 <b>"+type+" Alert</b> sent to <b>"+region+"</b><br><br>"+message
+
+log.prepend(entry)
+
+alert("Emergency broadcast initiated successfully")
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>🚨 Disaster Alert Command Center</h1>
+<p>Offline-First Emergency Broadcast Platform</p>
+</header>
+
+<nav>
+<a href="#dashboard">Dashboard</a>
+<a href="#send">Send Alert</a>
+<a href="#analytics">Analytics</a>
+<a href="#about">About</a>
+</nav>
+
+<div class="container" id="dashboard">
+
+<h2 class="section-title">System Overview</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="stat">99%</div>
+<div>Device Compatibility</div>
+<span class="badge">All phones supported</span>
+</div>
+
+<div class="card">
+<div class="stat"><10s</div>
+<div>Alert Delivery Time</div>
+<span class="badge">Nationwide broadcast</span>
+</div>
+
+<div class="card">
+<div class="stat">100%</div>
+<div>Population Reach</div>
+<span class="badge">Tourists included</span>
+</div>
+
+<div class="card">
+<div class="stat">0</div>
+<div>Internet Required</div>
+<span class="badge">GSM based</span>
+</div>
+
+</div>
+
+<br><br>
+
+<div class="card">
+<h2>Recent Emergency Alerts</h2>
+<div id="alertLog"></div>
+</div>
+
+</div>
+
+<div class="container" id="send">
+
+<h2 class="section-title">Broadcast Emergency Alert</h2>
+
+<div class="card">
+
+<label>Alert Type</label>
+<select id="type">
+<option>Earthquake</option>
+<option>Flood</option>
+<option>Tsunami</option>
+<option>Cyclone</option>
+<option>Wildfire</option>
+<option>General Emergency</option>
+</select>
+
+<label>Target Region</label>
+<input id="region" placeholder="District / City / Cell Zone">
+
+<label>Emergency Instructions</label>
+<textarea id="message" rows="5" placeholder="Example: Move to higher ground immediately. Avoid coastal areas."></textarea>
+
+<button onclick="sendAlert()">Broadcast Alert</button>
+
+</div>
+
+</div>
+
+<div class="container" id="analytics">
+
+<h2 class="section-title">System Analytics</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="stat">1.2M</div>
+Devices Reached Today
+</div>
+
+<div class="card">
+<div class="stat">53</div>
+Active Cell Towers
+</div>
+
+<div class="card">
+<div class="stat">8</div>
+Alerts Sent Today
+</div>
+
+<div class="card">
+<div class="stat">99.9%</div>
+Delivery Reliability
+</div>
+
+</div>
+
+</div>
+
+<div class="container" id="about">
+
+<h2 class="section-title">About the Platform</h2>
+
+<div class="card">
+
+<p>
+The Disaster Alert Command Center allows authorities to instantly broadcast life-saving warnings using cell broadcast technology. The system works even when the internet fails, ensuring that emergency information reaches citizens during earthquakes, floods, tsunamis, and other disasters.
+</p>
+
+<p>
+Alerts are transmitted directly through cellular towers and received by every powered-on phone in the target area. No mobile apps, registration, or data connection is required.
+</p>
+
+<p>
+This platform is designed for national disaster agencies, emergency services, and governments to ensure fast, reliable communication during crises.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+Disaster Communication Platform • Emergency Infrastructure System
+</footer>
+
+</body>
+</html>
