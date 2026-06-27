@@ -1,1 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Disaster Alert Command Center — Offline-first emergency broadcast platform for real-time critical hazard alerts.">
+  <title>Disaster Alert — Command Center</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23ef4444'/><text x='50%' y='54%' dominant-baseline='central' text-anchor='middle' font-size='18' fill='white'>🚨</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- ================================
+       HEADER
+  ================================ -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <div class="header-brand">
+        <img src="disaster-alert-app-logo.png" alt="Disaster Alert" class="header-logo">
+        <div class="header-brand-text">
+          <span class="header-title">DISASTER ALERT</span>
+          <span class="header-sub">Command Center</span>
+        </div>
+      </div>
+
+      <nav class="header-nav">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#send">Broadcast</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">SYSTEM ACTIVE</span>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================================
+         HERO
+    ================================ -->
+    <section class="hero">
+      <div class="hero-inner">
+
+        <div class="hero-alert-bar">
+          <span class="alert-bar-dot"></span>
+          OFFLINE-FIRST EMERGENCY BROADCAST PLATFORM
+        </div>
+
+        <h1 class="hero-title">
+          Reach Everyone.<br>
+          <em>Even Offline.</em>
+        </h1>
+
+        <p class="hero-sub">
+          Cell broadcast technology that delivers life-saving alerts to every powered-on device in a target zone — no internet, no app, no registration required.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#send" class="btn btn-primary">Broadcast Alert</a>
+          <a href="#dashboard" class="btn btn-ghost">View Dashboard</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-val">99%</span>
+            <span class="hero-stat-lbl">Device Reach</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val">&lt;10s</span>
+            <span class="hero-stat-lbl">Delivery Time</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val">0</span>
+            <span class="hero-stat-lbl">Internet Needed</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-val">24/7</span>
+            <span class="hero-stat-lbl">Uptime</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Live clock panel -->
+      <div class="hero-clock-panel">
+        <div class="clock-label">SYSTEM TIME</div>
+        <div class="clock-time" id="liveClock">--:--:--</div>
+        <div class="clock-date" id="liveDate">---</div>
+        <div class="clock-divider"></div>
+        <div class="clock-stat-row">
+          <div class="clock-stat">
+            <span class="clock-stat-val" id="alertCount">0</span>
+            <span class="clock-stat-lbl">Alerts Today</span>
+          </div>
+          <div class="clock-stat">
+            <span class="clock-stat-val">53</span>
+            <span class="clock-stat-lbl">Towers Active</span>
+          </div>
+        </div>
+        <div class="clock-uptime">
+          <span class="uptime-dot"></span>
+          All systems operational
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================
+         DASHBOARD
+    ================================ -->
+    <section id="dashboard" class="section reveal">
+      <div class="section-inner">
+
+        <div class="section-header">
+          <span class="section-tag">01 — Dashboard</span>
+          <h2 class="section-title">System Overview</h2>
+        </div>
+
+        <div class="stat-grid">
+
+          <div class="stat-card">
+            <div class="stat-card-icon red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="stat-card-body">
+              <div class="stat-card-val">99%</div>
+              <div class="stat-card-label">Device Compatibility</div>
+              <div class="stat-card-sub">All phones supported — including feature phones</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="stat-card-body">
+              <div class="stat-card-val">&lt;10s</div>
+              <div class="stat-card-label">Alert Delivery Speed</div>
+              <div class="stat-card-sub">From broadcast initiation to device reception</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="stat-card-body">
+              <div class="stat-card-val">100%</div>
+              <div class="stat-card-label">Population Reach</div>
+              <div class="stat-card-sub">Tourists and visitors included automatically</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6s0-2 2-2 2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 2 2"/><path d="M1 12s0-2 2-2 2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 2 2"/><path d="M1 18s0-2 2-2 2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 2 2"/></svg>
+            </div>
+            <div class="stat-card-body">
+              <div class="stat-card-val">GSM</div>
+              <div class="stat-card-label">Offline-First Technology</div>
+              <div class="stat-card-sub">Zero internet dependency — works when networks fail</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Alerts Log -->
+        <div class="alert-log-panel">
+          <div class="alert-log-header">
+            <span class="alert-log-title">Recent Emergency Alerts</span>
+            <span class="alert-log-badge" id="logBadge">0 alerts</span>
+          </div>
+          <div class="alert-log" id="alertLog">
+            <div class="alert-log-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+              <p>No alerts broadcast yet. Use the form below to send one.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================
+         BROADCAST FORM
+    ================================ -->
+    <section id="send" class="section reveal">
+      <div class="section-inner">
+
+        <div class="section-header">
+          <span class="section-tag">02 — Broadcast</span>
+          <h2 class="section-title">Send Emergency Alert</h2>
+          <p class="section-sub">Initiate a cell broadcast to the target region. All powered-on devices within the zone will receive this alert immediately.</p>
+        </div>
+
+        <div class="broadcast-layout">
+
+          <div class="broadcast-form-card">
+
+            <div class="form-group">
+              <label class="form-label">Alert Type</label>
+              <div class="select-wrap">
+                <select id="alertType" class="form-select">
+                  <option value="Earthquake">🌍 Earthquake</option>
+                  <option value="Flood">🌊 Flood</option>
+                  <option value="Tsunami">🌊 Tsunami</option>
+                  <option value="Cyclone">🌀 Cyclone</option>
+                  <option value="Wildfire">🔥 Wildfire</option>
+                  <option value="Landslide">⛰️ Landslide</option>
+                  <option value="Industrial Hazard">☢️ Industrial Hazard</option>
+                  <option value="General Emergency">🚨 General Emergency</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Severity Level</label>
+              <div class="severity-row">
+                <label class="severity-opt">
+                  <input type="radio" name="severity" value="Advisory" checked>
+                  <span class="severity-chip advisory">Advisory</span>
+                </label>
+                <label class="severity-opt">
+                  <input type="radio" name="severity" value="Warning">
+                  <span class="severity-chip warning">Warning</span>
+                </label>
+                <label class="severity-opt">
+                  <input type="radio" name="severity" value="CRITICAL">
+                  <span class="severity-chip critical">Critical</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Target Region</label>
+              <input type="text" id="alertRegion" class="form-input" placeholder="e.g. Ernakulam District, Kerala">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Emergency Instructions</label>
+              <textarea id="alertMessage" class="form-textarea" rows="5" placeholder="Example: Move to higher ground immediately. Avoid all coastal areas. Follow evacuation routes marked in green."></textarea>
+              <div class="char-count"><span id="charCount">0</span> / 300 characters</div>
+            </div>
+
+            <button class="btn-broadcast" id="broadcastBtn" onclick="sendAlert()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+              Initiate Broadcast
+            </button>
+
+          </div>
+
+          <div class="broadcast-info">
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.94 6.94l1.52-1.52a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="info-card-title">No App Required</div>
+                <div class="info-card-body">Alerts arrive as native system messages on every device.</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M1 6s0-2 2-2 2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 2 2"/><path d="M1 12s0-2 2-2 2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 2 2"/></svg>
+              </div>
+              <div>
+                <div class="info-card-title">Works Offline</div>
+                <div class="info-card-body">Cell broadcast bypasses the internet entirely via GSM towers.</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="info-card-title">Under 10 Seconds</div>
+                <div class="info-card-body">From initiation to full zone coverage — faster than any SMS system.</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="info-card-title">Multilingual Ready</div>
+                <div class="info-card-body">Broadcast in any language — tourists and visitors included.</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================
+         ANALYTICS
+    ================================ -->
+    <section id="analytics" class="section reveal">
+      <div class="section-inner">
+
+        <div class="section-header">
+          <span class="section-tag">03 — Analytics</span>
+          <h2 class="section-title">System Analytics</h2>
+          <p class="section-sub">Live infrastructure metrics from the broadcast network.</p>
+        </div>
+
+        <div class="analytics-grid">
+
+          <div class="analytics-card">
+            <div class="analytics-label">Devices Reached Today</div>
+            <div class="analytics-val red">1.2M</div>
+            <div class="analytics-bar-wrap">
+              <div class="analytics-bar" style="width: 82%; background: var(--red)"></div>
+            </div>
+            <div class="analytics-sub">+14% from yesterday</div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-label">Active Cell Towers</div>
+            <div class="analytics-val amber">53</div>
+            <div class="analytics-bar-wrap">
+              <div class="analytics-bar" style="width: 94%; background: var(--amber)"></div>
+            </div>
+            <div class="analytics-sub">94% network coverage</div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-label">Alerts Broadcast Today</div>
+            <div class="analytics-val" id="analyticAlertCount">0</div>
+            <div class="analytics-bar-wrap">
+              <div class="analytics-bar" id="analyticBar" style="width: 0%; background: var(--blue)"></div>
+            </div>
+            <div class="analytics-sub" id="analyticSub">No alerts yet today</div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-label">Delivery Reliability</div>
+            <div class="analytics-val green">99.9%</div>
+            <div class="analytics-bar-wrap">
+              <div class="analytics-bar" style="width: 99%; background: var(--green)"></div>
+            </div>
+            <div class="analytics-sub">Last 30 days average</div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-label">Average Delivery Time</div>
+            <div class="analytics-val amber">7.3s</div>
+            <div class="analytics-bar-wrap">
+              <div class="analytics-bar" style="width: 73%; background: var(--amber)"></div>
+            </div>
+            <div class="analytics-sub">Well within 10s threshold</div>
+          </div>
+
+          <div class="analytics-card">
+            <div class="analytics-label">System Uptime</div>
+            <div class="analytics-val green">99.99%</div>
+            <div class="analytics-bar-wrap">
+              <div class="analytics-bar" style="width: 100%; background: var(--green)"></div>
+            </div>
+            <div class="analytics-sub">52 minutes downtime / year</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================
+         ABOUT
+    ================================ -->
+    <section id="about" class="section reveal">
+      <div class="section-inner">
+
+        <div class="section-header">
+          <span class="section-tag">04 — About</span>
+          <h2 class="section-title">About the Platform</h2>
+        </div>
+
+        <div class="about-layout">
+
+          <div class="about-text">
+            <p>The Disaster Alert Command Center allows authorities to instantly broadcast life-saving warnings using cell broadcast technology. The system works even when the internet fails — ensuring emergency information reaches every citizen during earthquakes, floods, tsunamis, and other disasters.</p>
+            <p>Alerts are transmitted directly through cellular towers and received by every powered-on phone in the target area. No mobile apps, registration, or data connection required.</p>
+            <p>Designed for national disaster agencies, emergency services, and governments — built for speed, reliability, and reach when it matters most.</p>
+          </div>
+
+          <div class="about-features">
+
+            <div class="feature-item">
+              <div class="feature-dot red"></div>
+              <div>
+                <div class="feature-title">Cell Broadcast Technology</div>
+                <div class="feature-body">Alerts go through GSM infrastructure directly — not the internet.</div>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-dot amber"></div>
+              <div>
+                <div class="feature-title">Offline-First Architecture</div>
+                <div class="feature-body">System remains operational even during total network outages.</div>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-dot blue"></div>
+              <div>
+                <div class="feature-title">Zero Registration</div>
+                <div class="feature-body">No apps, no sign-ups. Every device in the zone gets the alert.</div>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-dot green"></div>
+              <div>
+                <div class="feature-title">Built for Governments</div>
+                <div class="feature-body">Designed for national agencies and emergency response teams.</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================
+       FOOTER
+  ================================ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="disaster-alert-app-logo.png" alt="" class="footer-logo">
+        <span>DISASTER ALERT</span>
+      </div>
+      <p class="footer-sub">Emergency Communication Infrastructure Platform</p>
+      <div class="footer-bottom">
+        <span>Built by <a href="https://maheendrahx.github.io/Myprofile/" target="_blank">Maheendra Menon</a></span>
+        <span class="footer-sep">·</span>
+        <span>
+          <a href="https://github.com/MaheendraHX/Disaster-Alert-System" target="_blank">GitHub ↗</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
